@@ -1,13 +1,16 @@
-var React = require('react');
-var TodoActions = require('../actions/TodoActions');
-var TodoTextInput = require('./TodoTextInput.react');
+import React, {Component} from 'react';
+import TodoActions from '../actions/TodoActions';
+import TodoTextInput from './TodoTextInput.react';
 
-var Header = React.createClass({
+class Header extends Component {  
+  constructor(props) {
+    super(props);
+  }
 
   /**
    * @return {object}
    */
-  render: function() {
+  render() {
     return (
       <header id="header">
         <h1>todos</h1>
@@ -18,7 +21,7 @@ var Header = React.createClass({
         />
       </header>
     )
-  },
+  }
 
   /**
    * Event handler called within TodoTextInput.
@@ -26,13 +29,13 @@ var Header = React.createClass({
    * in different ways.
    * @param {string} text
    */
-  _onSave: function(text) {
+  _onSave(text) {
     if (text.trim()){
       TodoActions.create(text);
     }
 
   }
 
-});
+}
 
-module.exports = Header;
+export default Header;

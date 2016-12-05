@@ -1,54 +1,80 @@
 // Component Event
 'use strict';
 
-var React = require('react');
-var ReactDom = require('react-dom');
+import React, {Component} from 'react';
+import {render} from 'react-dom';
 
-var Main = React.createClass({
-	onClick: function(event) {
+class Main extends Component {
+	constructor(props) {
+        super(props);
+
+		this.onClick		 = this.onClick.bind(this);
+		this.onDoubleClick	 = this.onDoubleClick.bind(this);
+		this.onContextMenu	 = this.onContextMenu.bind(this);
+
+		this.onMouseDown	 = this.onMouseDown.bind(this);
+		this.onMouseUp		 = this.onMouseUp.bind(this);
+		this.onChange		 = this.onChange.bind(this);
+		this.onInput		 = this.onInput.bind(this);
+		this.onCopy			 = this.onCopy.bind(this);
+		this.onCut			 = this.onCut.bind(this);
+		this.onPaste		 = this.onPaste.bind(this);
+    }
+
+	onClick(event) {
 			console.log('onClick');
 			console.log(event);
-		},
-	onDoubleClick: function(event) {
+	}
+
+	onDoubleClick(event) {
 		console.log('onDoubleClick');
 		console.log(event);
-	},
-	onContextMenu: function(event) {
+	}
+
+	onContextMenu(event) {
 		console.log('onContextMenu');
 		console.log(event);
-	},
-	onMouseDown: function(event) {
+	}
+
+	onMouseDown(event) {
 		console.log('onMouseDown');
 		console.log(event);
-	},
-	onMouseUp: function(event) {
+	}
+
+	onMouseUp(event) {
 		console.log('onMouseUp');
 		console.log(event);
-	},
-	onChange: function(event) {
+	}
+
+	onChange(event) {
 		console.log('onChange');
 		console.log(event);
-	},
-	onInput: function(event) {
+	}
+
+	onInput(event) {
 		console.log('onInput');
 		console.log(event);
-	},
-	onCopy: function(event) {
+	}
+
+	onCopy(event) {
 		console.log('onCopy');
 		console.log(event);
 		console.log(event.clipboardData);
-	},
-	onCut: function(event) {
+	}
+
+	onCut(event) {
 		console.log('onCut');
 		console.log(event);
 		console.log(event.clipboardData);
-	},
-	onPaste: function(event) {
+	}
+
+	onPaste(event) {
 		console.log('onPaste');
 		console.log(event);
 		console.log(event.clipboardData);
-	},
-	render: function() {
+	}
+
+	render() {
         return (
             <div>
 				참고 사이트: <a href="https://facebook.github.io/react/docs/events.html" target="_blank">https://facebook.github.io/react/docs/events.html</a><br/>
@@ -92,6 +118,6 @@ var Main = React.createClass({
             </div>
         )
     }
-});
+}
 
-ReactDom.render(<Main />, document.getElementById('app'));
+render(<Main />, document.getElementById('app'));

@@ -1,20 +1,13 @@
-var React = require('react');
-var ReactDom = require('react-dom');
+import React, {Component} from 'react';
+import {render} from 'react-dom';
 
-// using an ES6 transpiler, like babel
-//import { Router, Route, Link, hashHistory } from 'react-router'
+import { Router, Route, Link, hashHistory } from 'react-router'
 
-// not using an ES6 transpiler
-var Router = require('react-router').Router;
-var Route = require('react-router').Route;
-var Link = require('react-router').Link;
-var hashHistory = require('react-router').hashHistory;
+import About from './controllers/about';
+import Repos from './controllers/repos';
 
-var About = require('./controllers/about');
-var Repos = require('./controllers/repos');
-
-var App = React.createClass({
-    render: function() {
+class App extends Component {
+    render() {
         return (
             <div>
                 <h1>App</h1>
@@ -25,9 +18,9 @@ var App = React.createClass({
             </div>
         )
     }
-});
+}
 
-ReactDom.render((
+render((
     <Router history={hashHistory}>
         <Route path="/" component={App}/>
         {/* add the routes here */}

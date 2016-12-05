@@ -1,5 +1,11 @@
-var React = require('react');
+import React, {Component} from 'react';
 
-module.exports = (
-    <div>About</div>
-)
+class About extends Component {
+    render() {
+        return (
+            <div>About</div>
+        )
+    }
+}
+
+export default About;

@@ -1,26 +1,31 @@
-var React = require('react');
-var ReactPropTypes = React.PropTypes;
-var TodoActions = require('../actions/TodoActions');
-var TodoTextInput = require('./TodoTextInput.react');
+import React, {Component,PropTypes} from 'react';
+import TodoActions from '../actions/TodoActions';
+import TodoTextInput from './TodoTextInput.react';
 
-var classNames = require('classnames');
+import classNames from 'classnames';
 
-var TodoItem = React.createClass({
+const propTypes = {
+  todo: PropTypes.object.isRequired
+};
 
-  propTypes: {
-   todo: ReactPropTypes.object.isRequired
-  },
+class TodoItem extends Component {  
+  constructor(props) {
+    super(props);
 
-  getInitialState: function() {
-    return {
+    this.state = {
       isEditing: false
     };
-  },
+
+    this._onToggleComplete = this._onToggleComplete.bind(this);
+    this._onDoubleClick    = this._onDoubleClick.bind(this);
+    this._onSave           = this._onSave.bind(this);
+    this._onDestroyClick   = this._onDestroyClick.bind(this);
+  }
 
   /**
    * @return {object}
    */
-  render: function() {
+  render() {
     var todo = this.props.todo;
 
     var input;
@@ -60,15 +65,15 @@ var TodoItem = React.createClass({
         {input}
       </li>
     );
-  },
+  }
 
-  _onToggleComplete: function() {
+  _onToggleComplete() {
     TodoActions.toggleComplete(this.props.todo);
-  },
+  }
 
-  _onDoubleClick: function() {
+  _onDoubleClick() {
     this.setState({isEditing: true});
-  },
+  }
 
   /**
    * Event handler called within TodoTextInput.
@@ -76,15 +81,17 @@ var TodoItem = React.createClass({
    * in different ways.
    * @param  {string} text
    */
-  _onSave: function(text) {
+  _onSave(text) {
     TodoActions.updateText(this.props.todo.id, text);
     this.setState({isEditing: false});
-  },
+  }
 
-  _onDestroyClick: function() {
+  _onDestroyClick() {
     TodoActions.destroy(this.props.todo.id);
   }
 
-});
+}
 
-module.exports = TodoItem;
+TodoItem.propTypes = propTypes;
+
+export default TodoItem;

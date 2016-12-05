@@ -1,9 +1,5 @@
-var React = require('react');
+import React, {Component} from 'react';
 
-var About = require('../views/about');
+import About from '../views/about';
 
-module.exports = React.createClass({
-    render : function() {
-        return About
-    }
-});
+export default About;

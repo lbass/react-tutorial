@@ -1,9 +1,15 @@
-var React = require('react');
+import React, {Component} from 'react';
 
-module.exports = React.createClass({
-    render: function() {
+class Repos extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
         return (
             <div>Repos isolation</div>
         )
     }
-});
+}
+
+export default Repos;

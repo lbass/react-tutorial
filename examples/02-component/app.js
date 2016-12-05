@@ -1,12 +1,22 @@
 'use strict';
 
-var React = require('react');
-var ReactDom = require('react-dom');
+import React, {Component} from 'react';
+import {render} from 'react-dom';
 
-var LifeCycle = require('./components/LifeCycle');
+import LifeCycle from './components/LifeCycle';
 
-var Main = React.createClass({
-	onClick: function() {
+class Main extends Component {
+	constructor(props) {
+        super(props);
+
+        this.state = {
+            name: '홍길동'
+        };
+
+		this.onClick = this.onClick.bind(this);
+    }
+
+	onClick() {
 		var name;
 		if(this.state.name === '홍길동') {
 			name = 'Tom';
@@ -14,11 +24,9 @@ var Main = React.createClass({
 			name = '홍길동';
 		}
 		this.setState({name: name});
-	},
-	getInitialState: function() {
-        return {name: '홍길동'};
-    },
-    render: function() {
+	}
+
+    render() {
         return (
         	<div>
             	<LifeCycle name={this.state.name} />
@@ -26,6 +34,6 @@ var Main = React.createClass({
             </div>
         )
     }
-});
+}
 
-ReactDom.render(<Main />, document.getElementById('app'));
+render(<Main />, document.getElementById('app'));
