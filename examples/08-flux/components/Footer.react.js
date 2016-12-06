@@ -7,21 +7,23 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-var React = require('react');
-var ReactPropTypes = React.PropTypes;
-var TodoActions = require('../actions/TodoActions');
+import React, {Component,PropTypes} from 'react';
+import TodoActions from '../actions/TodoActions';
 
-var Footer = React.createClass({
+const propTypes = {
+  allTodos: PropTypes.object.isRequired
+};
 
-  propTypes: {
-    allTodos: ReactPropTypes.object.isRequired
-  },
+class Footer extends Component {  
+  constructor(props) {
+    super(props);
+  }
 
   /**
    * @return {object}
    */
-  render: function() {
-    var allTodos = this.props.allTodos;
+  render() {
+    const { allTodos } = this.props;
     var total = Object.keys(allTodos).length;
 
     if (total === 0) {
@@ -61,15 +63,17 @@ var Footer = React.createClass({
         {clearCompletedButton}
       </footer>
     );
-  },
+  }
 
   /**
    * Event handler to delete all completed TODOs
    */
-  _onClearCompletedClick: function() {
+  _onClearCompletedClick() {
     TodoActions.destroyCompleted();
   }
 
-});
+}
 
-module.exports = Footer;
+Footer.propTypes = propTypes;
+
+export default Footer;

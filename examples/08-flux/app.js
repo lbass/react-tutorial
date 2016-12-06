@@ -1,7 +1,7 @@
 // Flux
-var React = require('react');
-var ReactDom = require('react-dom');
+import React, {Component} from 'react';
+import {render} from 'react-dom';
 
-var TodoApp = require('./components/TodoApp.react');
+import TodoApp from './components/TodoApp.react';
 
-ReactDom.render(<TodoApp />, document.getElementById('todoapp'));
+render(<TodoApp />, document.getElementById('todoapp'));

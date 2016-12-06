@@ -1,11 +1,17 @@
-var React = require('react');
+import React, {Component} from 'react';
 
-var Repos = require('../views/repos');
+import Repos from '../views/repos';
 
-module.exports = React.createClass({
-    render : function() {
+class ReposController extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
         return (
             <Repos />
         )
     }
-});
+}
+
+export default ReposController;

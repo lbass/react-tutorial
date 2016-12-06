@@ -7,22 +7,24 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-var React = require('react');
-var ReactPropTypes = React.PropTypes;
-var TodoActions = require('../actions/TodoActions');
-var TodoItem = require('./TodoItem.react');
+import React, {Component,PropTypes} from 'react';
+import TodoActions from '../actions/TodoActions';
+import TodoItem from './TodoItem.react';
 
-var MainSection = React.createClass({
+const propTypes = {
+  allTodos: PropTypes.object.isRequired,
+  areAllComplete: PropTypes.bool.isRequired
+};
 
-  propTypes: {
-    allTodos: ReactPropTypes.object.isRequired,
-    areAllComplete: ReactPropTypes.bool.isRequired
-  },
+class MainSection extends Component {  
+  constructor(props) {
+    super(props);
+  }
 
   /**
    * @return {object}
    */
-  render: function() {
+  render() {
     // This section should be hidden by default
     // and shown when there are todos.
     if (Object.keys(this.props.allTodos).length < 1) {
@@ -48,15 +50,17 @@ var MainSection = React.createClass({
         <ul id="todo-list">{todos}</ul>
       </section>
     );
-  },
+  }
 
   /**
    * Event handler to mark all TODOs as complete
    */
-  _onToggleCompleteAll: function() {
+  _onToggleCompleteAll() {
     TodoActions.toggleCompleteAll();
   }
 
-});
+}
 
-module.exports = MainSection;
+MainSection.propTypes = propTypes;
+
+export default MainSection;

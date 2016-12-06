@@ -1,6 +1,6 @@
-var React = require('react');
-var ReactDom = require('react-dom');
+import React, {Component} from 'react';
+import {render} from 'react-dom';
 
-var routes = require('./routes');
+import routes from './routes';
 
-ReactDom.render(routes, document.getElementById('ui-view'));
+render(routes, document.getElementById('ui-view'));

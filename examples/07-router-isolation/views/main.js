@@ -1,11 +1,25 @@
-var React = require('react');
-var Link = require('react-router').Link;
+import React, {Component} from 'react';
+import { Link } from 'react-router'
 
-module.exports = React.createClass({
-    clickHandler: function(url, event) {
+const propTypes = {
+    onClick: PropTypes.func,
+	children: PropTypes.array
+};
+
+const defaultProps = {
+	children: []
+};
+
+class Main extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    clickHandler(url, event) {
         this.props.onClick(event, url);
-    },
-    render: function() {
+    }
+
+    render() {
         var repoClick = this.clickHandler.bind(this, '/repos');
         return (
             <div>
@@ -22,4 +36,9 @@ module.exports = React.createClass({
             </div>
         );
     }
-});
+}
+
+Main.propTypes = propTypes;
+Main.defaultProps = defaultProps;
+
+export default Main;

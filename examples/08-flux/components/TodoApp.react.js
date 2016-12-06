@@ -3,11 +3,11 @@
  * the TodoStore and passes the new data to its children.
  */
 
-var Footer = require('./Footer.react');
-var Header = require('./Header.react');
-var MainSection = require('./MainSection.react');
-var React = require('react');
-var TodoStore = require('../stores/TodoStore');
+import React, {Component,PropTypes} from 'react';
+import Footer from './Footer.react';
+import Header from './Header.react';
+import MainSection from './MainSection.react';
+import TodoStore from '../stores/TodoStore';
 
 /**
  * Retrieve the current TODO data from the TodoStore
@@ -19,31 +19,33 @@ function getTodoState() {
   };
 }
 
-var TodoApp = React.createClass({
+class TodoApp extends Component {  
+  constructor(props) {
+    super(props);
+
+    this.state = getTodoState();
+    this._onChange = this._onChange.bind(this);
+  }
 
   /**
    * Event handler for 'change' events coming from the TodoStore
    */
-  _onChange: function() {
+  _onChange() {
     this.setState(getTodoState());
-  },
+  }
 
-  getInitialState: function() {
-    return getTodoState();
-  },
-
-  componentDidMount: function() {
+  componentDidMount() {
     TodoStore.addChangeListener(this._onChange);
-  },
+  }
 
-  componentWillUnmount: function() {
+  componentWillUnmount() {
     TodoStore.removeChangeListener(this._onChange);
-  },
+  }
 
   /**
    * @return {object}
    */
-  render: function() {
+  render() {
     return (
       <div>
         <Header />
@@ -56,6 +58,6 @@ var TodoApp = React.createClass({
     )
   }
 
-});
+}
 
-module.exports = TodoApp;
+export default TodoApp;

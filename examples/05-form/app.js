@@ -1,25 +1,36 @@
 // Form
 'use strict';
 
-var React = require('react');
-var ReactDom = require('react-dom');
+import React, {Component} from 'react';
+import {render} from 'react-dom';
 
-var Main = React.createClass({
-    getInitialState: function() {
-        return {value: 'Hello!', areaValue: 'Teatarea Hello!'};
-    },
-    onChange: function(event) {
+class Main extends Component {
+	constructor(props) {
+        super(props);
+
+        this.state = {
+			value: 'Hello!',
+            areaValue: 'Teatarea Hello!'
+        };
+
+		this.onChange        = this.onChange.bind(this);
+		this.onAreaChange	 = this.onAreaChange.bind(this);
+    }
+
+    onChange(event) {
         this.setState({value: event.target.value});
-    },
-    onAreaChange: function(event) {
+    }
+
+    onAreaChange(event) {
         this.setState({areaValue: event.target.value});
-    },
-    render: function() {
+    }
+
+    render() {
         return (
             <div>
                 <span style={{fontWeight: 'bold'}}>Input text</span>
                 <br/>
-                <input type="text" value="abc"  />{'\u00A0'}
+                <input type="text" value="abc" readOnly />{'\u00A0'}
                 <input type="text" />{'\u00A0'}
                 <input type="text" value={this.state.value} onChange={this.onChange} />{'\u00A0'}
                 <input type="text" defaultValue="Hello!" />
@@ -34,6 +45,6 @@ var Main = React.createClass({
             </div>
         )
     }
-});
+}
 
-ReactDom.render(<Main />, document.getElementById('app'));
+render(<Main />, document.getElementById('app'));

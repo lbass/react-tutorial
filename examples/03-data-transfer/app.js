@@ -2,38 +2,51 @@
 // Communicate Between Components
 'use strict';
 
-var React = require('react');
-var ReactDom = require('react-dom');
+import React, {Component} from 'react';
+import {render} from 'react-dom';
 
-var Props = require('./components/Props');
-var State = require('./components/State');
+import Props from './components/Props';
+import State from './components/State';
 
-var Main = React.createClass({
-	onChangeIndex: function() {
+class Main extends Component {
+	constructor(props) {
+        super(props);
+
+        this.state = {
+			name: '버튼',
+            index: 0,
+			disabled: false
+        };
+
+		this.onChangeIndex = this.onChangeIndex.bind(this);
+		this.onChangeButtonLabel = this.onChangeButtonLabel.bind(this);
+		this.onChangeDisabled = this.onChangeDisabled.bind(this);
+    }
+
+	onChangeIndex() {
 		var index = this.state.index;
 		if(index < 10) {
 			this.setState({index: ++index});
 		}else {
-			
 			this.setState({index: 0});
 		}
-	},
-	onChangeButtonLabel: function() {
+	}
+
+	onChangeButtonLabel() {
 		var label;
 		if(this.state.name === '버튼') {
 			this.setState({name: 'Submit'});
 		}else {
 			this.setState({name: '버튼'});
 		}
-	},
-	onChangeDisabled: function() {
+	}
+
+	onChangeDisabled() {
 		var disabled = !this.state.disabled;
 		this.setState({disabled: disabled});
-	},
-	getInitialState: function() {
-        return {name: '버튼', index: 0, disabled: false};
-    },
-    render: function() {
+	}
+
+    render() {
         return (
             <div>
             	- Props<br/>
@@ -49,6 +62,6 @@ var Main = React.createClass({
             </div>
         );
     }
-});
+}
 
-ReactDom.render(<Main />, document.getElementById('app'));
+render(<Main />, document.getElementById('app'));
