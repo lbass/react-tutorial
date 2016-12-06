@@ -18,7 +18,6 @@ var State = React.createClass({
 	getInitialState: function() {
         return {index: 0};
     },
-	/*
 	componentDidMount: function() {
 		// 최초 렌더링이 일어난 다음(한번 호출)
     	console.log('5. componentDidMount');
@@ -36,7 +35,6 @@ var State = React.createClass({
 		// 컴포넌트의 업데이트가 DOM에 반영된 직후에 호출(최초 렌더링 시에는 호출되지 않음)
 		console.log('9.componentDidUpdate');
     },
-    */
     render: function() {
 		// 필수 항목
 //    	const { name, index, disabled } = this.props;
